@@ -1,13 +1,14 @@
 import React from "react";
 import './Player.css';
 
-export default function Player(props) {
+const Player = props => {
   const { player, setGame } = props;
 
   const handleMinus = () => {
     setGame ((cur)=>
       cur.map((item) => {
-          return item.name === player.name? {name:item.name, score:item.score-1}: item;
+          return item.name === player.name? {name:item.name, score: (item.score>0) ? item.score-1 : 0 }
+          : item;
       })
   ); 
   };
@@ -37,3 +38,4 @@ export default function Player(props) {
     </div>
   );
 }
+export default React.memo(Player);

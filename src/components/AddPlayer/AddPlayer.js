@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './AddPlayer.css';
 
 
-export default function AddPlayer(props) {
+const AddPlayer = props => {
   const { setGame } = props;
 
   const [newPlayerName, setNewPlayerName] = useState("");
@@ -40,3 +40,4 @@ export default function AddPlayer(props) {
     </form>
   );
 }
+export default React.memo(AddPlayer);
