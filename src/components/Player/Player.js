@@ -1,27 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
+import './Player.css';
 
 export default function Player(props) {
-  const [score, setScore] = useState(0);
+  const { player, setGame } = props;
 
-  const handleMinus=()=>{
-      setScore(prev=>prev-1)
-  }
+  const handleMinus = () => {
+    setGame ((cur)=>
+      cur.map((item) => {
+          return item.name === player.name? {name:item.name, score:item.score-1}: item;
+      })
+  ); 
+  };
 
-  const handlePlus=()=>{
-    setScore(prev=>prev+1)
-}
-
-const handleresetScore = () => {
-    setScore(0)
-}
+  const handlePlus = () => {
+    setGame ((cur)=>
+    cur.map((item) => {
+        return item.name === player.name? {name:item.name, score:item.score+1}: item;
+    })
+); 
+  };
 
   return (
-    <div style={{display:"flex", alignItems:'center'}}>
-      <p>{props.player}</p>
-      <div onClick={handlePlus}>+</div>
-      <div onClick={handleMinus}>-</div>
-      <div>{score}</div>
-      <div onClick={handleresetScore}>Reset score</div>
+    <div className="player">
+      <p>{player.name}</p>
+        <button counter onClick={handleMinus}>
+          -
+        </button>
+
+       {player.score}
+
+        <button counter onClick={handlePlus}>
+          +
+        </button>
+      
+      {/* <button onClick={handleresetScore}>Reset score</button> */}
     </div>
   );
 }

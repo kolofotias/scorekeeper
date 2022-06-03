@@ -1,7 +1,4 @@
-/* import styled from "styled-components";
-
-export default styled.div`
-  form {
-    max-width: 50%;
-  }
-`; */
+button{
+  width: 150px;
+  background-color: red;
+}

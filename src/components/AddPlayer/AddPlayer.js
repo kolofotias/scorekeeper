@@ -1,26 +1,42 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
+import './AddPlayer.css';
+
 
 export default function AddPlayer(props) {
-    const {setPlayerList} = props
-    const [newPlayer, setNewPlayer] = useState("");
+  const { setGame } = props;
 
+  const [newPlayerName, setNewPlayerName] = useState("");
 
-  const handleNewPlayer =(e) => {
-      setNewPlayer(e.target.value)
-  }
+  const handleNewPlayer = (e) => {
+    setNewPlayerName(e.target.value);
+  };
 
-  const handleSubmit = (e) =>{
-      e.preventDefault();
-    setPlayerList(cur=>[...cur,newPlayer])
-    setNewPlayer('')
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setGame((cur) => [
+      ...cur,
+      {
+        name: newPlayerName,
+        score: 0,
+      },
+    ]);
+    setNewPlayerName("");
+  };
+
   return (
     <form onSubmit={handleSubmit}>
-    <label>
-      Name:
-      <input type="text" name="name" value={newPlayer} onChange={handleNewPlayer}/>
-    </label>
-    <input type="submit" value="Submit" />
-  </form>
-  )
+      <label>
+        Add Player:
+        <br/>
+        <input
+          type="text"
+          name="name"
+          placeholder="Player name"
+          value={newPlayerName}
+          onChange={handleNewPlayer}
+        />
+      </label>
+      <input type="submit" id="submit" />
+    </form>
+  );
 }
